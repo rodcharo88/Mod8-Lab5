@@ -4,7 +4,10 @@ pipeline {
             label 'Nodo1'
         }
     }
-
+    environment {
+        SERVICE_NAME_FRONT="vuejsfront"
+        SERVICE_NAME_BACK="pythonback"
+    }
     stages {
         stage('Build') {
             steps {
@@ -16,12 +19,12 @@ pipeline {
                         bat 'git clone https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
                         bat 'cd proyectoFinal-vue-modulo6'
                     }
+                    bat 'echo {{FULLNAME}}'
+                    bat 'cd proyectoFinal-vue-modulo6 && npm install'
+                    bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
+                    bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/${env.SERVICE_NAME_FRONT}:${BUILD_NUMBER}'
+                    bat 'docker push 192.168.0.12:8082/mod8/${env.SERVICE_NAME_FRONT}:${BUILD_NUMBER}'
                 }
-                bat 'echo {{FULLNAME}}'
-                bat 'cd proyectoFinal-vue-modulo6 && npm install'
-                bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
-                bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/vuejsfront:v${BUILD_NUMBER}'
-                bat 'docker push 192.168.0.12:8082/mod8/vuejsfront:v${BUILD_NUMBER}'
             }
         }
 
