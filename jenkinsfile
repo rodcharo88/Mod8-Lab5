@@ -16,8 +16,8 @@ pipeline {
                     // if (output.contains('proyectoFinal-vue-modulo6')) {
                     //     bat 'cd proyectoFinal-vue-modulo6'
                     // } else {
-                        bat 'git pull https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
-                        bat 'cd proyectoFinal-vue-modulo6'
+                    bat 'git pull https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
+                    bat 'cd proyectoFinal-vue-modulo6'
                     // }
                     bat 'set'
                     bat 'echo {{FULLNAME}}'
@@ -25,7 +25,7 @@ pipeline {
                     bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
                     bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/vuejsfront:v2.5'
                     bat 'docker push 192.168.0.12:8082/mod8/vuejsfront:v2.5'
-                }
+                // }
             }
         }
 
