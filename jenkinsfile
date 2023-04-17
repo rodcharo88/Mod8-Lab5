@@ -16,7 +16,7 @@ pipeline {
                     // if (output.contains('proyectoFinal-vue-modulo6')) {
                     //     bat 'cd proyectoFinal-vue-modulo6'
                     // } else {
-                    bat 'git pull https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
+                    bat 'git clone https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
                     bat 'cd proyectoFinal-vue-modulo6'
                     // }
                     bat 'set'
