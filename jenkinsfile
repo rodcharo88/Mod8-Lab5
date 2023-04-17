@@ -11,14 +11,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                 script {
+                //  script {
                     // def output = bat(returnStdout: true, script: 'dir /b /a "proyectoFinal-vue-modulo6"')
                     // if (output.contains('proyectoFinal-vue-modulo6')) {
                     //     bat 'cd proyectoFinal-vue-modulo6'
                     // } else {
                         bat 'git pull https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
                         bat 'cd proyectoFinal-vue-modulo6'
-                    }
+                    // }
                     bat 'set'
                     bat 'echo {{FULLNAME}}'
                     bat 'cd proyectoFinal-vue-modulo6 && npm install'
