@@ -23,44 +23,44 @@ pipeline {
                     bat 'echo {{FULLNAME}}'
                     bat 'cd proyectoFinal-vue-modulo6 && npm install'
                     bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
-                    bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/vuejsfront:(echo ${env.BUILD_NUMBER})'
-                    bat 'docker push 192.168.0.12:8082/mod8/vuejsfront:(echo ${env.BUILD_NUMBER})'
+                    bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+                    bat 'docker push 192.168.0.12:8082/mod8/vuejsfront:v2.5'
                 }
             }
         }
 
-        // stage('DEVELOPMENT') {
-        //     environment {
-        //         APP_ENV = 'DEV'
-        //     }
-        //     steps {
-        //         bat 'echo $APP_ENV'
-        //         bat 'curl http://localhost:5000'
-        //         bat 'cd trabajo-final-mod-6 && npm run build'
-        //     }
-        // }
+        stage('DEVELOPMENT') {
+            environment {
+                APP_ENV = 'DEV'
+            }
+            steps {
+                bat 'echo $APP_ENV'
+                bat 'curl http://localhost:80'
+                bat 'cd proyectoFinal-vue-modulo6 && npm run build'
+            }
+        }
 
-        // stage('QA') {
-        //     environment {
-        //         APP_ENV = 'QA'
-        //     }
-        //     steps {
-        //         bat 'echo $APP_ENV'
-        //         bat 'grype docker:trabajo-final-mod-6-vueapp'
-        //         bat 'curl http://localhost:3000/products'
-        //         bat 'cd trabajo-final-mod-6 && npm run lint'
-        //     }
-        // }
+        stage('QA') {
+            environment {
+                APP_ENV = 'QA'
+            }
+            steps {
+                bat 'echo $APP_ENV'
+                bat 'grype 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+                bat 'curl http://localhost:3000'
+                bat 'cd proyectoFinal-vue-modulo6 && npm run lint'
+            }
+        }
 
-        // stage('PRODUCTION') {
-        //     environment {
-        //         APP_ENV = 'PROD'
-        //     }
-        //     steps {
-        //         bat 'echo $APP_ENV'
-        //         bat 'docker pull 192.168.0.12:8082/mod8/vuejsfront:v2.5'
-        //         bat 'docker run -d --name imagenexus -p 8088:80 localhost:8082/repositories/trabajo-final-mod-6-vueapp:1.0'
-        //     }
-        // }
+        stage('PRODUCTION') {
+            environment {
+                APP_ENV = 'PROD'
+            }
+            steps {
+                bat 'echo $APP_ENV'
+                bat 'docker pull 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+                bat 'docker run -d --name imagenexus -p 8088:80 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+            }
+        }
     }
 }
