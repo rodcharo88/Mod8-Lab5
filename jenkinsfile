@@ -22,8 +22,8 @@ pipeline {
                     bat 'echo {{FULLNAME}}'
                     bat 'cd proyectoFinal-vue-modulo6 && npm install'
                     bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
-                    bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/$SERVICE_NAME_FRONT:$BUILD_NUMBER'
-                    bat 'docker push 192.168.0.12:8082/mod8/$SERVICE_NAME_FRONT:$BUILD_NUMBER'
+                    bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/%env.SERVICE_NAME_FRONT%:%env.BUILD_NUMBER%'
+                    bat 'docker push 192.168.0.12:8082/mod8/%env.SERVICE_NAME_FRONT%:%env.BUILD_NUMBER%'
                 }
             }
         }
