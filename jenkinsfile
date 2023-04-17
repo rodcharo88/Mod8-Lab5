@@ -12,13 +12,13 @@ pipeline {
         stage('Build') {
             steps {
                  script {
-                    // def output = bat(returnStdout: true, script: 'dir /b /a "proyectoFinal-vue-modulo6"')
-                    // if (output.contains('proyectoFinal-vue-modulo6')) {
-                    //     bat 'cd proyectoFinal-vue-modulo6'
-                    // } else {
+                    def output = bat(returnStdout: true, script: 'dir /b /a "proyectoFinal-vue-modulo6"')
+                    if (output.contains('proyectoFinal-vue-modulo6')) {
+                        bat 'cd proyectoFinal-vue-modulo6'
+                    } else {
                         bat 'git clone https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
                         bat 'cd proyectoFinal-vue-modulo6'
-                    // }
+                    }
                     bat 'echo {{FULLNAME}}'
                     bat 'cd proyectoFinal-vue-modulo6 && npm install'
                     bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
@@ -28,38 +28,38 @@ pipeline {
             }
         }
 
-        stage('DEVELOPMENT') {
-            environment {
-                APP_ENV = 'DEV'
-            }
-            steps {
-                bat 'echo $APP_ENV'
-                bat 'curl http://localhost:80'
-                bat 'cd proyectoFinal-vue-modulo6 && npm run build'
-            }
-        }
+        // stage('DEVELOPMENT') {
+        //     environment {
+        //         APP_ENV = 'DEV'
+        //     }
+        //     steps {
+        //         bat 'echo $APP_ENV'
+        //         bat 'curl http://localhost:80'
+        //         bat 'cd proyectoFinal-vue-modulo6 && npm run build'
+        //     }
+        // }
 
-        stage('QA') {
-            environment {
-                APP_ENV = 'QA'
-            }
-            steps {
-                bat 'echo $APP_ENV'
-                // bat 'grype 192.168.0.12:8082/mod8/vuejsfront:v2.5'
-                bat 'curl http://localhost:3000'
-                bat 'cd proyectoFinal-vue-modulo6 && npm run lint'
-            }
-        }
+        // stage('QA') {
+        //     environment {
+        //         APP_ENV = 'QA'
+        //     }
+        //     steps {
+        //         bat 'echo $APP_ENV'
+        //         bat 'grype 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+        //         bat 'curl http://localhost:3000'
+        //         bat 'cd proyectoFinal-vue-modulo6 && npm run lint'
+        //     }
+        // }
 
-        stage('PRODUCTION') {
-            environment {
-                APP_ENV = 'PROD'
-            }
-            steps {
-                bat 'echo $APP_ENV'
-                bat 'docker pull 192.168.0.12:8082/mod8/vuejsfront:v2.5'
-                bat 'docker run -d --name imagenexus -p 8088:80 192.168.0.12:8082/mod8/vuejsfront:v2.5'
-            }
-        }
+        // stage('PRODUCTION') {
+        //     environment {
+        //         APP_ENV = 'PROD'
+        //     }
+        //     steps {
+        //         bat 'echo $APP_ENV'
+        //         bat 'docker pull 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+        //         bat 'docker run -d --name imagenexus -p 8088:80 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+        //     }
+        // }
     }
 }
