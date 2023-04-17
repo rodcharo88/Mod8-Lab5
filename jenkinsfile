@@ -1,0 +1,62 @@
+pipeline {
+    agent {
+        node {
+            label 'Nodo1'
+        }
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                 script {
+                    def output = bat(returnStdout: true, script: 'dir /b /a "PF_vuejs"')
+                    if (output.contains('PF_vuejs')) {
+                        bat 'cd PF_vuejs'
+                    } else {
+                        bat 'git clone https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
+                        bat 'cd PF_vuejs'
+                    }
+                }
+                bat 'echo {{FULLNAME}}'
+                bat 'cd PF_vuejs && npm install'
+                bat 'cd PF_vuejs && docker-compose up -d'
+                bat 'docker build -t 192.168.0.12:8082/mod8/vuejsfront:${BUILD_NUMBER} .'
+                bat 'docker push push 192.168.0.12:8082/mod8/vuejsfront:${BUILD_NUMBER}'
+            }
+        }
+
+        // stage('DEVELOPMENT') {
+        //     environment {
+        //         APP_ENV = 'DEV'
+        //     }
+        //     steps {
+        //         bat 'echo $APP_ENV'
+        //         bat 'curl http://localhost:5000'
+        //         bat 'cd trabajo-final-mod-6 && npm run build'
+        //     }
+        // }
+
+        // stage('QA') {
+        //     environment {
+        //         APP_ENV = 'QA'
+        //     }
+        //     steps {
+        //         bat 'echo $APP_ENV'
+        //         bat 'grype docker:trabajo-final-mod-6-vueapp'
+        //         bat 'curl http://localhost:3000/products'
+        //         bat 'cd trabajo-final-mod-6 && npm run lint'
+        //     }
+        // }
+
+        // stage('PRODUCTION') {
+        //     environment {
+        //         APP_ENV = 'PROD'
+        //     }
+        //     steps {
+        //         bat 'echo $APP_ENV'
+        //         bat 'docker pull localhost:8082/repositories/trabajo-final-mod-6-vueapp:1.0'
+        //         bat 'docker run -d --name imagenexus -p 8088:80 localhost:8082/repositories/trabajo-final-mod-6-vueapp:1.0'
+        //     }
+        // }
+    }
+}
