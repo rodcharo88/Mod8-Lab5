@@ -9,17 +9,17 @@ pipeline {
         stage('Build') {
             steps {
                  script {
-                    def output = bat(returnStdout: true, script: 'dir PF_vuejs')
-                    if (output.contains('PF_vuejs')) {
-                        bat 'cd PF_vuejs'
+                    def output = bat(returnStdout: true, script: 'dir /b /a "proyectoFinal-vue-modulo6"')
+                    if (output.contains('proyectoFinal-vue-modulo6')) {
+                        bat 'cd proyectoFinal-vue-modulo6'
                     } else {
                         bat 'git clone https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
-                        bat 'cd PF_vuejs'
+                        bat 'cd proyectoFinal-vue-modulo6'
                     }
                 }
                 bat 'echo {{FULLNAME}}'
-                bat 'cd PF_vuejs && npm install'
-                bat 'cd PF_vuejs && docker-compose up -d'
+                bat 'cd proyectoFinal-vue-modulo6 && npm install'
+                bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
                 bat 'docker build -t 192.168.0.12:8082/mod8/vuejsfront:${BUILD_NUMBER} .'
                 bat 'docker push push 192.168.0.12:8082/mod8/vuejsfront:${BUILD_NUMBER}'
             }
