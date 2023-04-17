@@ -11,20 +11,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                //  script {
-                //     def output = bat(returnStdout: true, script: 'dir /b /a "proyectoFinal-vue-modulo6"')
-                //     if (output.contains('proyectoFinal-vue-modulo6')) {
-                //         bat 'cd proyectoFinal-vue-modulo6'
-                //     } else {
+                 script {
+                    def output = bat(returnStdout: true, script: 'dir /b /a "proyectoFinal-vue-modulo6"')
+                    if (output.contains('proyectoFinal-vue-modulo6')) {
+                        bat 'cd proyectoFinal-vue-modulo6'
+                    } else {
                         bat 'git clone https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
                         bat 'cd proyectoFinal-vue-modulo6'
-                    // }
+                    }
                     bat 'echo {{FULLNAME}}'
                     bat 'cd proyectoFinal-vue-modulo6 && npm install'
                     bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
                     bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/vuejsfront:v2.5'
                     bat 'docker push 192.168.0.12:8082/mod8/vuejsfront:v2.5'
-                // }
+                }
             }
         }
 
