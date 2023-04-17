@@ -5,8 +5,8 @@ pipeline {
         }
     }
     environment {
-        SERVICE_NAME_FRONT="vuejsfront"
-        SERVICE_NAME_BACK="pythonback"
+        SERVICE_NAME_FRONT = "vuejsfront"
+        SERVICE_NAME_BACK = "pythonback"
     }
     stages {
         stage('Build') {
@@ -19,11 +19,12 @@ pipeline {
                         bat 'git clone https://github.com/rodcharo88/proyectoFinal-vue-modulo6'
                         bat 'cd proyectoFinal-vue-modulo6'
                     }
+                    bat 'set'
                     bat 'echo {{FULLNAME}}'
                     bat 'cd proyectoFinal-vue-modulo6 && npm install'
                     bat 'cd proyectoFinal-vue-modulo6 && docker-compose up -d'
-                    bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/vuejsfront:v2.5'
-                    bat 'docker push 192.168.0.12:8082/mod8/vuejsfront:v2.5'
+                    bat 'docker tag rodcharo/modulo6:latest 192.168.0.12:8082/mod8/vuejsfront:${env.BUILD_NUMBER}'
+                    bat 'docker push 192.168.0.12:8082/mod8/vuejsfront:${env.BUILD_NUMBER}'
                 }
             }
         }
@@ -57,7 +58,7 @@ pipeline {
         //     }
         //     steps {
         //         bat 'echo $APP_ENV'
-        //         bat 'docker pull localhost:8082/repositories/trabajo-final-mod-6-vueapp:1.0'
+        //         bat 'docker pull 192.168.0.12:8082/mod8/vuejsfront:v2.5'
         //         bat 'docker run -d --name imagenexus -p 8088:80 localhost:8082/repositories/trabajo-final-mod-6-vueapp:1.0'
         //     }
         // }
