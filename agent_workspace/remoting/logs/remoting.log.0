@@ -1,0 +1,27 @@
+abr 17, 2023 4:47:25 A. M. hudson.remoting.jnlp.Main createEngine
+INFO: Setting up agent: Nodo1
+abr 17, 2023 4:47:25 A. M. hudson.remoting.Engine startEngine
+INFO: Using Remoting version: 3044.vb_940a_a_e4f72e
+abr 17, 2023 4:47:25 A. M. org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using C:\Users\Rochas\Documents\Diplomado-FULLSTACK\Modulo-8\Lab5\agent_workspace\remoting as a remoting work directory
+abr 17, 2023 4:47:25 A. M. hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://192.168.0.12:8080/]
+abr 17, 2023 4:47:25 A. M. org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+abr 17, 2023 4:47:25 A. M. hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: 192.168.0.12
+  Agent port:    50000
+  Identity:      78:24:4b:08:4f:f5:68:57:6d:35:ee:83:7e:4e:9a:0b
+abr 17, 2023 4:47:25 A. M. hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+abr 17, 2023 4:47:25 A. M. hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to 192.168.0.12:50000
+abr 17, 2023 4:47:25 A. M. hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+abr 17, 2023 4:47:25 A. M. org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+abr 17, 2023 4:47:26 A. M. hudson.remoting.jnlp.Main$CuiListener status
+INFO: Remote identity confirmed: 78:24:4b:08:4f:f5:68:57:6d:35:ee:83:7e:4e:9a:0b
+abr 17, 2023 4:47:26 A. M. hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connected
