@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                  script {
-                    def output = bat(returnStdout: true, script: 'dir \PF_vuejs')
+                    def output = bat(returnStdout: true, script: 'dir PF_vuejs')
                     if (output.contains('PF_vuejs')) {
                         bat 'cd PF_vuejs'
                     } else {
